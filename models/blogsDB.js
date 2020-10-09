@@ -31,7 +31,7 @@ const blogsSchema = new schema ({
 })
 
 // exports module
-module.exports = mongoose.model("blogsDbModel", blogsSchema);
+module.exports = mongoose.model("blogs", blogsSchema); // "blogs" is 'Collection Name'
 
 module.exports.createNewBlogs = function(data,callback){
    data.save(callback);
