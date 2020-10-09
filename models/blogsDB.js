@@ -29,3 +29,6 @@ const blogsSchema = new schema ({
       required: true
    }
 })
+
+// exports module
+module.exports = mongoose.model("blogsDbModel", blogsSchema);
