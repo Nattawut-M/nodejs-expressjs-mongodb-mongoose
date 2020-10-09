@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+// 'check' = check request data from form, 'validationResult' = resualt of validate(error)
+const {check, validationResult} = require('express-validator');
+
 // import [models/blogsDB.js]
 const blogsDB = require('../models/blogsDB');
 
