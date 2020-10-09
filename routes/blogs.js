@@ -16,9 +16,20 @@ router.get('/add', (req, res, next) => {
 router.post('/add', (req, res, next) => {
    dataForm = new blogsDB({
       article: req.body.article,
-      auther: req.body.auther,
-      categories: req.body.categories
+      author: req.body.author,
+      category: req.body.category
    })
+   // call function from 'blogs.js' for save data from 'addForm.js' and insert into MongoDB 'blogDB'
+   blogsDB.createNewBlogs(dataForm, (err) => {
+      if(err) {
+         // console.log(err);
+         console.log('error!!');
+      }
+   })
+   // show data 
+   console.log(req.body.article);
+   console.log(req.body.author);
+   console.log(req.body.category);
 })
 
 module.exports = router;
