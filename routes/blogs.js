@@ -8,7 +8,11 @@ const {check, validationResult} = require('express-validator');
 const blogsDB = require('../models/blogsDB');
 
 // Blogs Homepage
-router.get('/', (req, res, next) => {
+router.get('/', [
+   // check data from request
+   check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(),
+   check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty()
+], (req, res, next) => {
    blogsDB.showAllData((err, blogs) => {
       if(err) throw err;
 
