@@ -23,9 +23,9 @@ router.get('/add', (req, res, next) => {
 });
 
 router.post('/add', [
-   // check data from request
-   check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(),
-   check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty()
+   // check data from request 
+   check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(), 
+   check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty() 
 ], (req, res, next) => {
    dataForm = new blogsDB({
       article: req.body.article,
