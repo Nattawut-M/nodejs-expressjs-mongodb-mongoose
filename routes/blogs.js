@@ -6,7 +6,12 @@ const blogsDB = require('../models/blogsDB');
 
 // Blogs Homepage
 router.get('/', (req, res, next) => {
-   res.render('blogs/index', {hi: "from routes/blogs"});
+   blogsDB.showAllData((err, blogs) => {
+      if(err) throw err;
+
+      res.render('blogs/index', {hi: "from routes/blogs", blogsData: blogs});
+   });
+   
 })
 
 router.get('/add', (req, res, next) => {
