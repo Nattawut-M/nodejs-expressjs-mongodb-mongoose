@@ -27,6 +27,8 @@ router.post('/add', [
    check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(), 
    check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty() 
 ], (req, res, next) => {
+   // push 'req' to parameter for check 'null' data from forms, then assign values into 'results'
+   const results = validationResult(req);
    dataForm = new blogsDB({
       article: req.body.article,
       author: req.body.author,
