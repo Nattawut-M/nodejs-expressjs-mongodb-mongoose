@@ -33,6 +33,7 @@ const blogsSchema = new schema ({
 // exports module
 module.exports = mongoose.model("blogs", blogsSchema); // "blogs" is 'Collection Name'
 
+// module save data
 module.exports.createNewBlogs = function(data,callback){
    data.save(callback);
 };
