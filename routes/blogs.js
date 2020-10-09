@@ -13,4 +13,12 @@ router.get('/add', (req, res, next) => {
    res.render('blogs/addForm');
 });
 
+router.post('/add', (req, res, next) => {
+   dataForm = new blogsDB({
+      article: req.body.article,
+      auther: req.body.auther,
+      categories: req.body.categories
+   })
+})
+
 module.exports = router;
