@@ -8,11 +8,8 @@ const {check, validationResult} = require('express-validator');
 const blogsDB = require('../models/blogsDB');
 
 // Blogs Homepage
-router.get('/', [
-   // check data from request
-   check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(),
-   check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty()
-], (req, res, next) => {
+router.get('/', (req, res, next) => {
+
    blogsDB.showAllData((err, blogs) => {
       if(err) throw err;
 
@@ -25,7 +22,11 @@ router.get('/add', (req, res, next) => {
    res.render('blogs/addForm');
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/add', [
+   // check data from request
+   check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(),
+   check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty()
+], (req, res, next) => {
    dataForm = new blogsDB({
       article: req.body.article,
       author: req.body.author,
