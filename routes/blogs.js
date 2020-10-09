@@ -22,9 +22,10 @@ router.post('/add', (req, res, next) => {
    // call function from 'blogs.js' for save data from 'addForm.js' and insert into MongoDB 'blogDB'
    blogsDB.createNewBlogs(dataForm, (err) => {
       if(err) {
-         // console.log(err);
+         console.log(err);
          console.log('error!!');
       }
+      res.redirect('/blogs');
    })
    // show data 
    console.log(req.body.article);
