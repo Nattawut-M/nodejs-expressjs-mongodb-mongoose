@@ -20,11 +20,11 @@ const blogsSchema = new schema ({
       type: String,
       required: true
    },
-   auther: {
+   author: {
       type: String,
       required: true
    },
-   categories: {
+   category: {
       type: String,
       required: true
    }
