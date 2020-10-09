@@ -19,5 +19,13 @@ const blogsSchema = new schema ({
    article: {
       type: String,
       required: true
+   },
+   auther: {
+      type: String,
+      required: true
+   },
+   categories: {
+      type: String,
+      required: true
    }
 })
