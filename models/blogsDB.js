@@ -8,3 +8,16 @@ mongoose.connect(dbUrl, {
    useNewUrlParser: true
 })
 const db = mongoose.connection;
+
+// new schema
+const schema = mongoose.Schema;
+// new 'blogsSchema'
+const blogsSchema = new schema ({
+   id: {
+      type: schema.ObjectId
+   },
+   article: {
+      type: String,
+      required: true
+   }
+})
