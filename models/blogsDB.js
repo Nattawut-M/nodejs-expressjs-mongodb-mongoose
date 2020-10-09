@@ -7,7 +7,7 @@ const dbUrl = 'mongodb://localhost:27017/blogDB';
 mongoose.connect(dbUrl, {
    useNewUrlParser: true
 })
-const db = mongoose.connection;
+const conn = mongoose.connection;
 
 // new schema
 const schema = mongoose.Schema;
@@ -31,9 +31,14 @@ const blogsSchema = new schema ({
 })
 
 // exports module
-module.exports = mongoose.model("blogs", blogsSchema); // "blogs" is 'Collection Name'
+const db = module.exports = mongoose.model("blogs", blogsSchema); // "blogs" is 'Collection Name'
 
 // module save data
 module.exports.createNewBlogs = function(data,callback){
    data.save(callback);
 };
+
+// module fetch data from database 'blogDB' collection 'blogs'
+module.exports.showAllData = (data) => {
+   db.find(data);
+}
