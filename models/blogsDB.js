@@ -41,4 +41,9 @@ module.exports.createNewBlogs = function(data,callback){
 // module fetch data from database 'blogDB' collection 'blogs'
 module.exports.showAllData = (data) => {
    db.find(data);
-}
+};
+
+// module delete data by _id
+module.exports.deleteBlog = (id, callback) => {
+   db.findByIdAndDelete(id, callback);
+};
