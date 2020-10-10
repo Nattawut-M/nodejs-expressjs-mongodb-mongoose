@@ -66,7 +66,7 @@ router.post('/add', [
 router.get('/delete/:id', (req, res, next) => {
    blogsDB.deleteBlog(req.params.id, (err) => {
       if (err) throw err;
-      res.redirect('blogs/');
+      res.redirect('/blogs');
    })
 });
 module.exports = router;
