@@ -42,6 +42,28 @@
                </select>
             </div>
          </div>
+
+         <% if (locals.errors) { %>
+            <!-- alert  -->
+            <ul class="alert alert-warning alert-dimissible fade show w-75" role="alert">
+
+               <!-- button close alert -->
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <!-- &times; = 'x' -->
+                  <span aria-hidden="true">&times;</span> 
+               </button>
+               
+               <!-- text show error -->
+               <% errors.forEach(error => { %>
+                  <strong>
+                     <li class="mx-3">
+                        <%= error.msg %> 
+                     </li>
+                  </strong>
+                  <% }) %>
+               </ul>
+         <% } %>
+         
          <!-- submit -->
          <button type="submit" class="btn btn-primary">บันทึกบทความ</button>
       </form>
