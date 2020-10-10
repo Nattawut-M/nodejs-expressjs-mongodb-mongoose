@@ -29,23 +29,38 @@ router.post('/add', [
 ], (req, res, next) => {
    // push 'req' to parameter for check 'null' data from forms, then assign values into 'results'
    const results = validationResult(req);
-   dataForm = new blogsDB({
-      article: req.body.article,
-      author: req.body.author,
-      category: req.body.category
-   })
-   // call function from 'blogs.js' for save data from 'addForm.js' and insert into MongoDB 'blogDB'
-   blogsDB.createNewBlogs(dataForm, (err) => {
-      if(err) {
-         console.log(err);
-         console.log('error!!');
-      }
-      res.redirect('/blogs');
-   })
-   // show data 
-   console.log(req.body.article);
-   console.log(req.body.author);
-   console.log(req.body.category);
+   // 'results.errors' return 'key', 'values' = about errors
+   const err = results.errors;
+   // loop for console.log (show debug)
+   for (var key in err) {
+      console.log(err[key].value);
+   }
+   // if 'req' has 'null' input
+   if (!results.isEmpty()) {
+      // กรณีมีค่าว่าง
+      res.render('blogs/addForm', {
+         errors: err
+      });
+   } else {
+      // กรณี "ไม่มี" ค่าว่าง
+      dataForm = new blogsDB({
+         article: req.body.article,
+         author: req.body.author,
+         category: req.body.category
+      })
+      // call function from 'blogs.js' for save data from 'addForm.js' and insert into MongoDB 'blogDB'
+      blogsDB.createNewBlogs(dataForm, (err) => {
+         if(err) {
+            console.log(err);
+            console.log('error!!');
+         }
+         res.redirect('/blogs');
+      })
+      // show data 
+      console.log(req.body.article);
+      console.log(req.body.author);
+      console.log(req.body.category);
+   }
 })
 
 module.exports = router;
