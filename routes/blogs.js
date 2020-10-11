@@ -63,10 +63,16 @@ router.post('/add', [
    }
 })
 
+// delete
 router.get('/delete/:id', (req, res, next) => {
    blogsDB.deleteBlog(req.params.id, (err) => {
       if (err) throw err;
       res.redirect('/blogs');
    })
 });
+
+// edit
+router.get('/edit/:id', (req, res, next) => {
+   console.log(req.params.id);
+})
 module.exports = router;
