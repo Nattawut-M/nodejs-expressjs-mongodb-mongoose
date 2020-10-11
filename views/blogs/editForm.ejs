@@ -48,8 +48,8 @@
             </div>
          </div>
 
-         <!-- sent _id via <input> for findId of blogs in MongoDB -->
-         <input type="hidden" name="blogs-id" value="<%= blogsData._id %> ">
+         <!-- sent _id via <input> for findId of blogs in MongoDB to router ('/update/:id') -->
+         <input type="hidden" name="id" value="<%= blogsData._id %> ">
 
          <!-- alert required input field -->
          <% if (locals.errors) { %>
