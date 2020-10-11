@@ -73,6 +73,10 @@ router.get('/delete/:id', (req, res, next) => {
 
 // edit
 router.get('/edit/:id', (req, res, next) => {
-   console.log(req.params.id);
+   // console.log(req.params.id);
+   blogsDB.getBlogsId(req.params.id, (err, data) => {
+      if (err) throw err;
+      
+   })
 })
 module.exports = router;
