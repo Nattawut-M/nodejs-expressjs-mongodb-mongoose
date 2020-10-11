@@ -76,7 +76,9 @@ router.get('/edit/:id', (req, res, next) => {
    // console.log(req.params.id);
    blogsDB.getBlogsId(req.params.id, (err, data) => {
       if (err) throw err;
-      res.render('blogs/editForm');
+      res.render('blogs/editForm', {
+         blogsData: data
+      });
    })
 })
 module.exports = router;
