@@ -68,7 +68,7 @@ router.get('/delete/:id', (req, res, next) => {
    blogsDB.deleteBlog(req.params.id, (err) => {
       if (err) throw err;
       res.redirect('/blogs');
-   })
+   });
 });
 
 // edit
@@ -79,6 +79,47 @@ router.get('/edit/:id', (req, res, next) => {
       res.render('blogs/editForm', {
          blogsData: data
       });
-   })
+   });
+});
+
+router.post('/update', [
+   // check data from request 
+   check("article", "กรุณาใส่ชื่อบทความ").not().isEmpty(), 
+   check("author", "กรุณาใส่ชื่อผู้แต่ง").not().isEmpty() 
+], (req, res, next) => {
+   // push 'req' to parameter for check 'null' data from forms, then assign values into 'results'
+   const results = validationResult(req);
+   // 'results.errors' return 'key', 'values' = about errors
+   const err = results.errors;
+   // loop for console.log (show debug)
+   for (var key in err) {
+      console.log(err[key].value);
+   }
+   // if 'req' has 'null' input
+   if (!results.isEmpty()) {
+      // กรณีมีค่าว่าง
+      res.redirect('blogs/');
+   } else {
+      // กรณี "ไม่มี" ค่าว่าง
+      // const 'blogdsSchema' in file 'models/blogsDB.js'
+      dataForm = new blogsDB({
+         // <input type="hidden" name="id" value="<%= blogsData._id %> ">
+         id: req.body.id,
+         article: req.body.article,
+         author: req.body.author,
+         category: req.body.category
+      });
+      // call function from 'blogs.js' for save data from 'addForm.js' and insert into MongoDB 'blogDB'
+      blogsDB.updateBlog(dataForm, (err) => {
+         if(err) {
+            console.log(err);
+            console.log('error!!');
+            res.redirect('/blogs');
+         } else {
+            res.redirect('/blogs');
+         }
+      });
+   }
 })
+
 module.exports = router;
