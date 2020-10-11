@@ -48,6 +48,10 @@
             </div>
          </div>
 
+         <!-- sent _id via <input> for findId of blogs in MongoDB -->
+         <input type="hidden" name="blogs-id" value="<%= blogsData._id %> ">
+
+         <!-- alert required input field -->
          <% if (locals.errors) { %>
             <!-- alert  -->
             <ul class="alert alert-warning alert-dimissible fade show w-75" role="alert">
