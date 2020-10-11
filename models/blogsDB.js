@@ -55,4 +55,21 @@ module.exports.getBlogsId = (id, callback) => {
    }
    // find 
    db.findOne(query, callback) ;
-}
+};
+
+module.exports.updateBlog = (data, callback) => {
+   let queryUpdate = {
+      _id: data.id
+   }
+
+   // update
+   db.findByIdAndUpdate(queryUpdate, {
+      $set: {
+         article: data.article,
+         author: data.author,
+         category: data.category
+      }
+   }, {
+      new: true
+   }, callback );
+};
