@@ -23,13 +23,13 @@
             <!-- article -->
             <div class="form-group col-md-12">
                <label for="inputArticleName">ชื่อบทความ</label>
-               <input type="text" name="article" class="form-control" id="inputArticleName" placeholder="ใส่ชื่อบทความ" value="<%= blogsData.article %> ">
+               <input type="text" name="article" class="form-control" id="inputArticleName" placeholder="ใส่ชื่อบทความ" value="<%= blogsData.article %>">
             </div>
 
             <!-- author -->
             <div class="form-group col-md-10">
                <label for="inputAuthorName">ชื่อผู้แต่ง</label>
-               <input type="text" name="author" class="form-control" id="inputAuthorName" placeholder="ชื่อผู้แต่งบทความ" value="<%= blogsData.author %> ">
+               <input type="text" name="author" class="form-control" id="inputAuthorName" placeholder="ชื่อผู้แต่งบทความ" value="<%= blogsData.author %>">
             </div>
 
             <!-- category -->
@@ -51,7 +51,7 @@
          </div>
 
          <!-- sent _id via <input> for findId of blogs in MongoDB to router ('/update/:id') -->
-         <input type="hidden" name="id" value="<%= blogsData._id %> ">
+         <input type="hidden" name="id" value="<%= blogsData._id %>">
 
          <!-- alert required input field -->
          <% if (locals.errors) { %>
