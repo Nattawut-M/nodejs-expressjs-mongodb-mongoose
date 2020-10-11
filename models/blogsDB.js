@@ -47,3 +47,12 @@ module.exports.showAllData = (data) => {
 module.exports.deleteBlog = (id, callback) => {
    db.findByIdAndDelete(id, callback);
 };
+
+// get id of blogs
+module.exports.getBlogsId = (id, callback) => {
+   let query = {
+      _id: id // check _id == id (from parameters)
+   }
+   // find 
+   db.findOne(query, callback) ;
+}
