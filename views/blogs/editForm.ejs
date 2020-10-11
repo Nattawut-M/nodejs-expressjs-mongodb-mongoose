@@ -8,7 +8,7 @@
 </head>
 <body>
    <%- include('../bt-layout') %>
-
+   <%# blogsData %> 
    <section class="content" id="addForm">
       <h1>แก้ไขบทความ (edit)</h1>
       <!-- button back -->
@@ -23,13 +23,13 @@
             <!-- article -->
             <div class="form-group col-md-12">
                <label for="inputArticleName">ชื่อบทความ</label>
-               <input type="text" name="article" class="form-control" id="inputArticleName" placeholder="ใส่ชื่อบทความ">
+               <input type="text" name="article" class="form-control" id="inputArticleName" placeholder="ใส่ชื่อบทความ" value="<%= blogsData.article %> ">
             </div>
 
             <!-- author -->
             <div class="form-group col-md-10">
                <label for="inputAuthorName">ชื่อผู้แต่ง</label>
-               <input type="text" name="author" class="form-control" id="inputAuthorName" placeholder="ชื่อผู้แต่งบทความ">
+               <input type="text" name="author" class="form-control" id="inputAuthorName" placeholder="ชื่อผู้แต่งบทความ" value="<%= blogsData.author %> ">
             </div>
 
             <!-- category -->
@@ -37,8 +37,12 @@
                <label for="inputCategoryName">หมวดหมู่</label>
                <!-- Selelct - Option -->
                <select name="category" class="form-control" id="inputCategoryName">
-                  <option value="นิยาย" selected>นิยาย</option>
-                  <option value="สารคดี">สารคดี</option>
+                  <% if (blogsData.category === 'นิยาย') { %>
+                     <option value="นิยาย" selected>นิยาย</option>
+                  <% } else { %>
+                     <option value="สารคดี">สารคดี</option>
+                  <% } %>
+                        
                </select>
             </div>
          </div>
@@ -65,7 +69,7 @@
          <% } %>
          
          <!-- submit and reset -->
-         <button type="submit" class="btn btn-primary">แก้ไขบทความ</button>
+         <button type="submit" class="btn btn-primary">อัพเดทบทความ</button>
          <button type="reset" class="btn btn-danger">รีเซ็ตบทความ</button>
       </form>
 
