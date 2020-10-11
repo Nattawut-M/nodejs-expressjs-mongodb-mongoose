@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Add Form</title>
+   <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+   <%- include('../bt-layout') %>
+
+   <section class="content" id="addForm">
+      <h1>แก้ไขบทความ (edit)</h1>
+      <!-- button back -->
+      <a href="/blogs" class="btn btn-outline-warning btn-sm" id="btn-back">ย้อนกลับ</a>
+      <hr>
+
+      <!-- form -->
+      <h1>รายละเอียดบทความ</h1>
+      <form action="/blogs/add" method="POST">
+         <div class="form-row w-75">
+
+            <!-- article -->
+            <div class="form-group col-md-12">
+               <label for="inputArticleName">ชื่อบทความ</label>
+               <input type="text" name="article" class="form-control" id="inputArticleName" placeholder="ใส่ชื่อบทความ">
+            </div>
+
+            <!-- author -->
+            <div class="form-group col-md-10">
+               <label for="inputAuthorName">ชื่อผู้แต่ง</label>
+               <input type="text" name="author" class="form-control" id="inputAuthorName" placeholder="ชื่อผู้แต่งบทความ">
+            </div>
+
+            <!-- category -->
+            <div class="form-group col-md-2">
+               <label for="inputCategoryName">หมวดหมู่</label>
+               <!-- Selelct - Option -->
+               <select name="category" class="form-control" id="inputCategoryName">
+                  <option value="นิยาย" selected>นิยาย</option>
+                  <option value="สารคดี">สารคดี</option>
+               </select>
+            </div>
+         </div>
+
+         <% if (locals.errors) { %>
+            <!-- alert  -->
+            <ul class="alert alert-warning alert-dimissible fade show w-75" role="alert">
+
+               <!-- button close alert -->
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <!-- &times; = 'x' -->
+                  <span aria-hidden="true">&times;</span> 
+               </button>
+               
+               <!-- text show error -->
+               <% errors.forEach(error => { %>
+                  <strong>
+                     <li class="mx-3">
+                        <%= error.msg %> 
+                     </li>
+                  </strong>
+                  <% }) %>
+               </ul>
+         <% } %>
+         
+         <!-- submit and reset -->
+         <button type="submit" class="btn btn-primary">แก้ไขบทความ</button>
+         <button type="reset" class="btn btn-danger">รีเซ็ตบทความ</button>
+      </form>
+
+      
+   </section>
+</body>
+</html>
